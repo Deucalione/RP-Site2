@@ -1,0 +1,129 @@
+<%
+let onlineClass;
+let onlineText;
+if(user.online == 1){
+    onlineClass = 'bg-main-2';
+    onlineText = 'Играет';
+}
+else{
+    onlineClass = 'bg-main-1';
+    onlineText = 'Не в игре';
+}
+let sexClass;
+let sexText;
+if(user.sex==1){
+    sexClass = 'fa fa-male'
+    sexText = 'Женский'
+}
+else {
+    sexClass = 'fa fa-female'
+    sexText = 'Мужской'
+}
+let houseText;
+if(user.house==-1){
+    houseText = 'Бездомный'
+}
+else {
+    houseText = '№ '+ user.house +''
+}
+let carText;
+if(user.car1 == -1 && user.car2 == -1 && user.car3 ==-1){
+    carText = 'Отсутствует'
+}
+else{
+    let cars = '0';
+    if(user.car1!=-1){
+        cars++;
+        if(user.car2!=-1){
+            cars++
+            if(user.car3!=-1){
+                cars++;
+            }
+        }
+    }
+    carText = ''+ cars +'/3'
+}
+let bizText;
+if(user.bizid == -1){
+    bizText = 'Отсутствует'
+}
+else{
+    bizText = '№ '+ user.bizid +''
+}
+let medcard;
+let medcardcolor;
+if(user.medcard == 0){
+    medcard = 'Отсутствует';
+    medcardcolor = 'red'
+}
+else {
+    medcard = 'Присутствует';
+    medcardcolor = 'green';
+}
+let net = 'Отсутствует';
+let est = 'Присутствует';
+let greenc = 'green';
+let redc = 'red';
+let licm;
+let licmcolor;
+if(user.lica == 0 ){
+    licm = net;
+    licmcolor = redc;
+}
+else {licmcolor = greenc; licm=est;}
+let licb, licbcolor;
+if(user.licb == 0) {licb = net; licbcolor =redc;}else{licb=est;licbcolor=greenc;}
+let licg, licgcolor;
+if(user.licc == 0) {licg=net;licgcolor=redc;}else {licg=est;licbcolor=greenc;}
+let licavt, licavtcolor;
+if(user.licd == 0){licavt=net;licavtcolor=redc;}else {licavt=est;licavtcolor=greenc;}
+let licvt, licvtcolor;
+if(user.lich == 0){licvt=net;licvtcolor=redc}else {licvt=est;licvtcolor=greenc}
+let licvod, licvodcolor;
+if(user.lics == 0){licvod=net;licvodcolor=redc}else {licvod=est;licvodcolor=greenc}
+let licgun, licguncolor;
+if(user.licw == 0){licgun=net;licguncolor=redc}else {licgun=est;licguncolor=greenc}
+if(!error) {error =''}
+
+%>
+<div class="container mt-5 mb-5">
+    <h4 class="mt-5 text-center font-weight-bold">Настройки</h4>
+    <div class="row mt-5 bg-ac pt-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <p class="text-center">
+                <img class="avatar avatar_ img-fluid" alt="Avatar" src="/assets/images/avatar/<%= user.avatar%>" />
+                <button id="btnAvatar" class="mt-4 btn btn-rounded btn-danger">Изменить аватар</button>
+            </p>
+        </div>
+        <div class="col-md-6 pt-3 pr-5">
+            <h3 class="title-ucp-2"><span><%=user.name%></span></h3><br>
+            <div class="inner-container">
+                <div class="inner-title"><h5 class="mt-2">Изменение NickName</h5></div>
+                <div class="inner-body inner-border clearfix">
+                    <div id="nick_settings">
+                        <p id="nick_error" style="color:red;"><%=error%></p>
+                        <form method="post" action="/account/settings/nickedit">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input name="new_nick_edit" class="form-control" placeholder="Введите новый ник" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input  name="new_nick_edit_again" class="form-control" placeholder="Введите новый ник повторно" required>
+                                </div>
+                            </div>
+                            <h5 style="font-size: 12px"><button id="nick_edit" type="submit" class="btn btn-elegant" style="border-radius: 0px;background-color: #131313;font-size:10px">Оплатить</button>&nbsp;&nbsp;&nbsp;Данная услуга стоит 30 кредитов</h5><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+
+

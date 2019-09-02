@@ -1,0 +1,245 @@
+<%
+let onlineClass;
+let onlineText;
+if(user.online == 1){
+    onlineClass = 'bg-main-2';
+    onlineText = 'Играет';
+}
+else{
+    onlineClass = 'bg-main-1';
+    onlineText = 'Не в игре';
+}
+let sexClass;
+let sexText;
+if(user.sex==1){
+    sexClass = 'fa fa-male'
+    sexText = 'Женский'
+}
+else {
+    sexClass = 'fa fa-female'
+    sexText = 'Мужской'
+}
+let houseText;
+if(user.house==-1){
+    houseText = 'Бездомный'
+}
+else {
+    houseText = '№ '+ user.house +''
+}
+let carText;
+if(user.car1 == -1 && user.car2 == -1 && user.car3 ==-1){
+    carText = 'Отсутствует'
+}
+else{
+    let cars = '0';
+    if(user.car1!=-1){
+        cars++;
+        if(user.car2!=-1){
+            cars++
+            if(user.car3!=-1){
+                cars++;
+            }
+        }
+    }
+    carText = ''+ cars +'/3'
+}
+let bizText;
+if(user.bizid == -1){
+    bizText = 'Отсутствует'
+}
+else{
+    bizText = '№ '+ user.bizid +''
+}
+let medcard;
+let medcardcolor;
+if(user.medcard == 0){
+    medcard = 'Отсутствует';
+    medcardcolor = 'red'
+}
+else {
+    medcard = 'Присутствует';
+    medcardcolor = 'green';
+}
+let net = 'Отсутствует';
+let est = 'Присутствует';
+let greenc = 'green';
+let redc = 'red';
+let licm;
+let licmcolor;
+if(user.lica == 0 ){
+    licm = net;
+    licmcolor = redc;
+}
+else {licmcolor = greenc; licm=est;}
+let licb, licbcolor;
+if(user.licb == 0) {licb = net; licbcolor =redc;}else{licb=est;licbcolor=greenc;}
+let licg, licgcolor;
+if(user.licc == 0) {licg=net;licgcolor=redc;}else {licg=est;licbcolor=greenc;}
+let licavt, licavtcolor;
+if(user.licd == 0){licavt=net;licavtcolor=redc;}else {licavt=est;licavtcolor=greenc;}
+let licvt, licvtcolor;
+if(user.lich == 0){licvt=net;licvtcolor=redc}else {licvt=est;licvtcolor=greenc}
+let licvod, licvodcolor;
+if(user.lics == 0){licvod=net;licvodcolor=redc}else {licvod=est;licvodcolor=greenc}
+let licgun, licguncolor;
+if(user.licw == 0){licgun=net;licguncolor=redc}else {licgun=est;licguncolor=greenc}
+
+function getRangs(id, rank) {
+
+    const rangs = [
+        ['', '','',''],
+        ["Рядовой", "Сержант", "Ст.сержант", "Старшина", "Лейтенант", "Капитан", "Майор", "Подполковник", "Полковник", "Генерал ВСН"],
+        ["Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг"],
+        ["Рядовой", "Сержант", "Ст. сержант", "Старшина", "Лейтенант", "Ст. лейтенант", "Майор", "Подполковник", "Полковник", "Генерал МВД"],
+        ["Рядовой", "Сержант", "Ст. сержант", "Старшина", "Лейтенант", "Ст. лейтенант", "Майор", "Подполковник", "Полковник", "Генерал ДПС"],
+        ["Интерн", "Медработник", "Ст. Медработник", "Фельдшер", "Участковый врач", "Терапевт", "Хирург", "Специалист", "Заведующий", "Главный врач",],
+        ["Стажёр", "Мл. редактор", "Редактор", "Верстальщик новостей", "Радиотехник", "Репортёр", "Технический специалист", "Зам. директора", "Директор", "Ген. директор"],
+        ["Охранник", "Начальник охраны", "Адвокат", "Инспектор здравохранения", "Инспектор СМИ", "Инспектор ГИБДД", "Инспектор МВД", "Министр", "Зам. губернатора", "Губернатор"],
+        ["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+        ["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+        ["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+    ];
+    return rangs[id][rank]
+}
+function getSubRangs(id,subrank){
+    const sub_rangs = [
+        ['','',''],
+        ["Рота снабжения", "Военная полиция", "Патрульная рота"],
+        ["Отсутствует", "Отсутствует", "Отсутствует"],
+        ["Патрульно-постовая служба", "Федеральная служба исполнения наказаний", "Специальный отряд быстрого реагирования"],
+        ["Дорожно-постовая служба", "Служба эвакуации", "Дежурная часть"],
+        ["Отделение в г.Арзамас", "Отделение в г. Южный", "Дежурная часть"],
+        ["Редакция", "Аудиовизуальный отдел", "Отсутствует"],
+        ["Отсутствует", "Отсутствует", "Отсутствует"],
+        ["Отсутствует", "Отсутствует", "Отсутствует"],
+        ["Отсутствует", "Отсутствует", "Отсутствует"]
+        ["Отсутствует", "Отсутствует", "Отсутствует"]
+    ];
+    return sub_rangs[id][subrank]
+}
+
+%>
+<div class="container-fluid" id="personal">
+    <div class="container" style="padding-top: 10%;">
+        <div class="personal-content"><h2>ЛИЧНЫЙ КАБИНЕТ</h2><br><br></div>
+        <div class="row" style="background-color: #131313; border-radius: 22px;">
+            <!-- Начало сайдбара -->
+            <div class="col-md-1 pt-5">
+                <div class="settings-ico">
+                    <a href="/account/settings"><i class="fa fa-cog"></i></a>
+                </div>
+                <div class="settings-ico">
+                    <a href="/account/leader"><i class="fa fa-users"></i></a></div>
+                <div class="settings-ico">
+                    <a href="/account/admin/"><img src="/images/illuminat.png" style="height:55px;width: 55px;filter: brightness(0) invert(1);"></a>
+                </div>
+            </div>
+            <!-- Конец сайдбара -->
+            <!-- Начало Аватара -->
+            <div class="col-md-4 pt-3 pl-3">
+                <img id="imgavatar" class="avatar" src="/images/avatar/<%=user.avatar%>" style="border-radius: 20px; height: 400px; width:271px;"><br><br>
+            </div>
+            <!-- Конец Аватара -->
+            <div class="col-md-7 pt-3 pr-5">
+                <h3 class="title-ucp-2"><span><%=user.name%></span><span><div class="post-tag"><span class="<%=onlineClass%>"><%=onlineText%></span></div></span></h3><br>
+                <div class="inner-container">
+                    <div class="inner-title"><h5 class="mt-2">Изменение ранга сотруднику</h5></div>
+                    <div class="inner-body inner-border clearfix">
+                        <div id="nick_settings">
+                            <p id="nick_error" style="color:red;"><%=error%></p>
+                            <form method="post" action="/account/leader/rankedit">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="nick" class="form-control" placeholder="Ник сотрудника" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input  name="rank" class="form-control" placeholder="Ранг" required>
+                                    </div>
+                                </div>
+                                <h5 style="font-size: 12px"><button id="rank_edit" type="submit" class="btn btn-elegant" style="border-radius: 0px;background-color: #131313;font-size:10px">Изменить</button>&nbsp;</h5><br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="container">
+                    <table class="leaders-table table table-striped table-hover table-sm table-borderless" style="margin-left: 30%">
+                        <thead>
+                        <tr style="background-color: #dd163b;">
+                            <th colspan="6">Сотрудники</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>NickName</th>
+                            <th>Уровень</th>
+                            <th>Ранг</th>
+                            <th>Должность</th>
+                            <th>Отдел</th>
+                            <th>Телефон</th>
+                            <!--th>Онлайн</th-->
+                        </tr>
+                        <% member.forEach(function (item, index) { %>
+                            <tr>
+                                <td><%=item.name%></td>
+                                <td><%=item.lvl%></td>
+                                <td><%=item.rank%></td>
+                                <td id="rank<%=index%>"><%=getRangs(item.member, item.rank-1)%></td>
+                                <td id="subrank<%=index%>"><%=getSubRangs(item.member, item.podmember)%></td>
+                                <td><%=item.number%></td>
+                            </tr>
+                        <%})%>
+                        </tbody>
+                    </table><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    $('h5').next().hide();
+
+    $('h5').click(function(){
+        $(this).next().slideToggle();
+        $('h4').not(this).next().stop(true,true).slideUp();
+    });
+
+    $(window).on('hashchange', function (event) {
+        var $activeAccordion = $(window.location.hash);
+        var $parentAccordion = $activeAccordion.parents('.js-ui-accordion');
+
+    });
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    $('#btnAvatar').click(function(){
+        var avatars = ['woman-1.png', 'woman-2.png','woman-3.png','woman-4.png','woman-5.png','man-3.png', 'man-4.png','man-5.png','man-6.png', 'man-7.png', 'man-8.png'];
+        var count = avatars.length;
+        var avatarRand = getRandomInt(0, count-1);
+        var avatar = avatars[avatarRand];
+        console.log(JSON.stringify(avatar));
+        $.ajax({
+            url: 'account/avatar',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({"avatar": avatar}),
+            cache: false,
+            success: function(){
+                $("#imgavatar").attr("src", "/images/avatar/"+ avatar);
+            }
+
+        });
+    });
+
+</script>
+
+

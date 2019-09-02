@@ -1,0 +1,165 @@
+<main>
+    <section class="startGame bg-1 pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="wow fadeInDown col-sm-6">
+                    <h2 class="text-center">ВИДЕО ОБЗОР<br>
+                        НАШЕГО ПРОЕКТА</h2>
+                    <div class="pos-center">
+                        <div class="progress" style="background: #dd163b; height: 5px">
+                            <div class="progress-bar" style="height: 5px" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <iframe class="pt-4" style="display: block" width="100%" height="70%" src="https://www.youtube-nocookie.com/embed/RLV2pZmum_M?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <br>
+                </div>
+                <br>
+                <div class="wow fadeInDown col-sm-6 about-makkord">
+                    <div class="container">
+                        <div class="row">
+                            <img class="pos-center" src="/assets/images/logo.png" height="100px">
+                        </div>
+                        <div class="row ml-5 mr-5 mt-3 pos-center hidemobile">
+                            <h4 class="logo-text text-center">MAKKORD</h4>
+                            <h4 class="logo-text text-center">R O L E P L A Y</h4>
+                        </div>
+                        <div class="row mt-4">
+                            <h4 class="text-center">Играй в знаменитую GTA Criminal Russia
+                                на проекте MAKKORD ROLEPLAY</h4>
+                        </div>
+                        <br>
+                        <p class="text-center"> <a class="btn btn-rounded text-white">Начать играть<i class="pl-2 fa fa-play"></i></a> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+    <section ><img style="width: 100%;
+    height: 90px;
+    margin-top: -107px;
+    position: absolute;" src="/assets/images/white-bg.png">
+    </section>
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row main-row">
+                <div class=" wow fadeInDown delay-1s col-lg-4  col-md-4 col-sm-4 col-xs-4">
+                    <img  class="home-anim-img-cop" idth="100%" src="/assets/images/woman-police.jpg"/>
+                </div>
+                <div class="wow fadeInDown mt-5 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <p style="font-size: 18px;" c class="text-center">РЕШИ, КЕМ ТЫ СТАНЕШЬ</p>
+                    <h1 class="text-center">ПОЛИЦЕЙСКИЙ,<br> ИЛИ БАНДИТ?</h1>
+                    <p class="text-center align-content-center" style="font-size: 14px;"> И еще 20 профессий, которыми ты можешь овладеть.
+                        Полицейский, диллер, политик, журналист,
+                        кто ты?</p>
+                </div>
+                <div class="wow fadeInDown delay-1s col-lg-4  col-md-4 col-sm-4 col-xs-4">
+                    <img class="home-anim-img-bandit" width="100%" src="/assets/images/bandit.png"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section ><img style="width: 100%;
+    height: 90px;
+    margin-top: 5px;
+    transform: rotate(180deg);
+    position: absolute;" src="/assets/images/white-bg.png">
+    </section>
+    <div class="bg-2 mt-5 serverMonitoring">
+        <div class="container">
+            <br><br><br>
+            <div class="row">
+                <div class="wow fadeInDown col-sm-6">
+                    <h2 class="text-center">КУПИ МАШИНУ, ДОМ,<br>
+                        СОЗДАЙ БИЗНЕС
+                    </h2>
+                    <p class="text-center"><img src="/assets/images/car-money.png"></p>
+                    <p class="text-center">С огромной виллой, роскошным автомобилем,
+                        внимание противоположного
+                        пола всегда будет твоим.</p>
+                </div>
+                <div class="wow fadeInDown col-sm-6">
+                    <h2 class="text-center">НАШ ОНЛАЙН</h2>
+                    <div class="pos-center">
+                        <div class="progress" style="background: #dd163b; height: 5px">
+                            <div class="progress-bar" style="height: 5px" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div id="online"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+
+    Highcharts.theme = {
+        colors: ['#d8284c', '#252525', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
+            '#FF9655', '#FFF263', '#6AF9C4'],
+        chart: {
+            backgroundColor: null,
+        },
+        title: {
+            style: {
+                color: '#000000',
+                font: 'bold 36pt GothamProBold, Verdana, sans-serif'
+            }
+        }
+    };
+    Highcharts.setOptions(Highcharts.theme);
+
+    function render(control,pc) {
+        Highcharts.chart(control, {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+
+            title: {
+                text: pc,
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 5
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: null
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: false,
+                        distance: 0,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '85%',
+                borderWidth: 0,
+                data: [
+                    ['Владение',   pc],
+                    ['',       20-pc],
+                    {
+                        name: 'Name',
+                        y: 0.2,
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                ]
+            }],
+            exporting: { enabled: false },
+            credits: {
+                enabled: false
+            }
+        });
+    }
+    render("online",<%= Online%>);
+</script>

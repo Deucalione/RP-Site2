@@ -1,0 +1,63 @@
+<%
+function getMaxOnline(item) {
+    switch (Number.parseInt(item.group_id)) {
+        case 4: {
+            return item.servers*1000;
+        }
+        case 2: {
+            return item.servers*500;
+
+        }
+        case 7: {
+            return item.servers*500;
+
+        }
+        case 3: {
+            return item.servers*500;
+
+        }
+        case 9: {
+            return item.servers*800;
+
+        }
+        case 5: {
+            return item.servers*443;
+
+        }
+        case 1: {
+            return item.servers*500;
+
+        }
+
+        case 6: {
+            return item.servers*300;
+
+        }
+    }
+}
+
+
+ %>
+
+<div class="container">
+    <p style="text-align: center" class="center">
+        <%
+        servers.forEach(function (item, index) {
+        %>
+    <div class="col-t">
+        <h4 class="text-center font-weight-bold"><%= item.players%><span class="text-black-50">/<%=  getMaxOnline(item)%></span></h4>
+        <div class="g-col center">
+            <div class="f-col" style="height: <%= (item.players/getMaxOnline(item))*100%>%">
+                <h5 class="text-center t-col"><%=  item.servers%></h5>
+            </div>
+        </div>
+        <h4 class="text-center font-weight-bold"><%=  item.name%></h4>
+    </div>
+
+    <%
+    })
+    %>
+    </p>
+    <h4  class="mt-2 text-center grey-text">MAKKORD.COM</h4>
+    <h5 class="text-left grey-text" style="font-size: 15px">KONYAEV</h5>
+</div>

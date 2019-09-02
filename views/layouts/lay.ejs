@@ -1,0 +1,151 @@
+<%
+
+let login = 0;
+if(!req.session.User){
+
+    login = "  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
+            "    <ul class=\"navbar-nav mr-auto\">\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/\">Главная <span class=\"sr-only\">(current)</span></a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"http://makkord-rp.com/\">Форум</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/start\">Как начать играть</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/news\">Новости</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/about\">О нас</a>\n" +
+            "      </li>\n" +
+            "    </ul>\n" +
+            "  </div>\n"
+
+}
+else {
+
+    login = "  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
+            "    <ul class=\"navbar-nav mr-auto\">\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/\">Главная <span class=\"sr-only\">(current)</span></a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"http://makkord-rp.com/\">Форум</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/start\">Как начать играть</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/news\">Новости</a>\n" +
+            "      </li>\n" +
+            "      <li class=\"nav-item\">\n" +
+            "        <a class=\"nav-link\" href=\"/about\">О нас</a>\n" +
+            "      </li>\n" +
+            "    </ul>\n" +
+            "    <ul class=\"navbar-nav ml-auto nav-flex-icons\">\n" +
+            "      <li class=\"nav-item avatar\">\n" +
+            "        <a class=\"nav-link p-0\" href=\"#\">\n" +
+            "          <img src=\"/images/avatar/"+req.session.User.avatar+"\" class=\"rounded-circle z-depth-0\" alt=\"avatar image\" height=\"40px\" width=\'50px\'>\n" +
+            "        </a>\n" +
+            "      </li>\n" +
+            "    </ul>" +
+            "  </div>\n"
+
+}
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= Title%> - MAKKORD Role Play - Играй в GTA: Criminal Russia по сети!</title>
+    <meta name="description" content="СОЗДАЙ СВОЮ ИСТОРИЮ НА MAKKORD ROLEPLAY. Играй в знаменитую GTA Criminal Russia на проекте MAKKORD ROLEPLAY" />
+    <link rel="image_src" href="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#dd163b">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/styles/font-awesome.min.css"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/styles/bootstrap.css" />
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="/styles/mdb.css" />
+    <link rel="stylesheet" href="/styles/animate.min.css" />
+    <link rel="stylesheet" href="/styles/ionicons.min.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/gothamProBlack.css" />
+    <link rel="shortcut icon" href="/images/logo.ico" type="image/x-icon">
+
+</head>
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background-color: #222">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" style="height: 40px; width: 55px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <%-login%>
+</nav>
+
+<!-- JQuery -->
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+
+<script type="text/javascript" src="/dependencies/sails.io.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+
+<%- body %>
+
+
+<nav id="topNav" class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <div class="navbar-collapse collapse" id="bs-navbar">
+            <ul class="nav navbar-nav" style="margin-left:10%">
+                <li>
+                    <a class="page-scroll" href="/">Главная</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/start" >Как начать играть</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="http://makkord-rp.com/" target="_blank">Форум</a>
+                </li>
+                <!--<li>
+                    <a class="page-scroll" href="/donate">Донат</a>
+                </li>-->
+                <li>
+                    <a class="page-scroll" href="/about">О проекте</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/rules">Правила</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/news">Новости</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="bs-navbar">
+            <ul class="nav navbar-nav" style="margin-left:35%;">
+                <li>
+                    <a style="font-size:22px;" class="page-scroll fa fa-youtube-play" href="https://youtube.com/c/Weishaypt"></a>
+
+                </li>
+                <li>
+                    <a style="font-size:22px;" class="page-scroll fa fa-vk" href="https://vk.com/makkord_rp"></a>
+                </li>
+                <li>
+                    <a style="font-size:22px;" class="page-scroll fa fa-info" href="/rules"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<%
+function tsToDate(ts){
+
+    var unixtimestamp = ts;
+    // Months array
+    var months_arr = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+    // Convert timestamp to milliseconds
+    var date = new Date(unixtimestamp*1000);
+
+    // Year
+    var year = date.getFullYear();
+
+    // Month
+    var month = months_arr[date.getMonth()];
+
+    // Day
+    var day = date.getDate();
+
+    // Hours
+    var hours = date.getHours();
+
+    // Minutes
+    var minutes = "0" + date.getMinutes();
+
+    // Seconds
+    var seconds = "0" + date.getSeconds();
+
+    // Display date time in MM-dd-yyyy h:m:s format
+    var convdataTime = day+' '+month+' '+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    return convdataTime;
+
+}
+%>
+<main class="pt-5 max-lg-5">
+    <%-include('header.ejs')%>
+    <div class="row wow fadeIn pl-3 pr-4 pb-4">
+        <div class="container-fluid">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <form  onclick="return false">
+
+                        <label class="control-label mb-10" id="leader_error" style="color: #dd163b"></label>
+                        <div class="form-group">
+                            <label class="control-label mb-10">NickName</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nick" placeholder="NickName">
+                            </div>
+                        </div>
+                        <button type="submit" id="btnSearch" class="btn btn-success mr-10">Найти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wow fadeIn pl-3 pr-4">
+        <div class="container-fluid">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <table class="table-logs container-fluid">
+                        <tbody>
+                        <tr>
+                            <th>Действие</th>
+                            <th>Дата&nbsp;&nbsp;<span class="fa fa-calendar"></span></th>
+                        </tr>
+                        <%logs.forEach(function (item) { %>
+                        <tr>
+
+                            <td><span class="fa fa-bars"></span>&nbsp
+                                <%
+                                    let action;
+                                    if(item.action == 'mute') {action = 'Администратор '+item.player+' поставил затычку игроку '+item.target+' на '+item.value+' м. Причина: '+item.reason+''}
+                                    else if(item.action == 'unmute') {action = 'Администратор '+item.player+' снял затычку игроку '+item.target+''}
+                                    else if(item.action == 'offunmute') {action = 'Администратор '+item.player+' снял затычку игроку '+item.target+' в оффлайне'}
+                                    else if(item.action == 'ban') {action = 'Администратор '+item.player+' заблокировал игрока '+item.target+' на '+item.value+' д. Причина: '+item.reason+''}
+                                    else if(item.action == 'sban') {action = 'Администратор '+item.player+' заблокировал игрока '+item.target+' навсегда. Причина: '+item.reason+''}
+                                    else if(item.action == 'unban') {action = 'Администратор '+item.player+' разблокировал игрока '+item.target+''}
+                                    else if(item.action == 'jail') {action = 'Администратор '+item.player+' посадил игрока '+item.target+' в деморган. Причина: '+item.reason+''}
+                                    else if(item.action == 'unjail') {action = 'Админстратор '+item.player+' выпустил игрока '+item.target+' из деморгана'}
+                                    else if(item.action == 'warn') {action = 'Администратор '+item.player+' выдал предупреждение игроку '+item.target+'. Причина: '+item.reason+''}
+                                    else if(item.action == 'unwarn') {action = 'Администратор '+item.player+' снял предупреждение игроку '+item.target+''}
+                                    else if(item.action == 'offunwarn') {action = 'Администратор '+item.player+' снял предупреждение игроку '+item.target+' в оффлайне'}
+                                    else if(item.action == 'awarn') {action = 'Администратор '+item.player+' выдал админ-предупреждение администратору '+item.target+'. Причина: '+item.reason+''}
+                                    else if(item.action == 'makeleader') {action = 'Админстратор '+item.player+' назначил игрока '+item.target+' лидером '+item.value+' фракции'}
+                                    else if(item.action == 'offleader') {action = 'Админстратор '+item.player+' снял игрока '+item.target+' с лидерства в оффлайне'}
+                                    else if(item.action == 'makeleader') {action = 'Админстратор '+item.player+' назначил игрока '+item.target+' администратором '+item.value+' уровня'}
+                                    else if(item.action == 'transfer') {action = 'Игрок '+item.player+' перевёл '+item.value+' руб. игроку '+item.target+''}
+                                    else if(item.action == 'changename') {action = 'Игрок '+item.player+' сменил ник на '+item.target+''}
+                                    else if(item.action == 'vk-share') {action = 'Игрок '+item.player+' получил '+item.value+' руб. за репост ВКонтакте'}
+                                    else if(item.action == 'betalog') {action = 'Тестер '+item.player+' зашёл на сервер. IP: '+item.reason+''}
+                                %>
+                                <%=action%>
+                            </td>
+                            <td><%=tsToDate(item.timestamp)%></td>
+                        </tr>
+                        <%})%>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    $('#btnSearch').click(function () {
+        let nick = $('#nick').val();
+        document.location.href = '/account/admin/logs/'+nick+'';
+    })
+
+</script>

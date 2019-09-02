@@ -1,0 +1,219 @@
+<%
+let jail;
+if(user.admlvl <2 ){ }else {jail = '<div class="col-md-4 mb-4">\n' +
+        '                <div class="card bg-dark" style="height: 397.3px">\n' +
+        '                    <div class="card-body"><form onsubmit="return false">\n' +
+        '                                        <h4 class="control-label mb-10">Выдача деморгана</h4>\n' +
+        '                                        <label class="control-label mb-10" id="jail_error" style="color: #dd163b"></label>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">NickName</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="nick_jail" placeholder="NickName">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Количество в минутах</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="time_jail" placeholder="Кол-во минут">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Причина</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="reason_jail" placeholder="Причина">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <button type="submit" id="btnJailPlayer" class="btn btn-danger mr-10">Выдать деморган</button>\n' +
+        '                                    </form>\n           </div>\n' +
+        '                </div>\n' +
+        '            </div>'}
+let mute;
+if(user.admlvl <2 ){ }else {mute = '<div class="col-md-4 mb-4">\n' +
+        '                <div class="card bg-dark" style="height: 397.3px">\n' +
+        '                    <div class="card-body"><form onsubmit="return false">\n' +
+        '                                        <h4 class="control-label mb-10">Выдача блокировки чата</h4>\n' +
+        '                                        <label class="control-label mb-10" id="mute_error" style="color: #dd163b"></label>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">NickName</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="nick_mute" placeholder="NickName">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Количество в минутах</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="time_mute" placeholder="Кол-во минут">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Причина</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="reason_mute" placeholder="Причина">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <button type="submit" id="btnMutePlayer" class="btn btn-danger mr-10">Выдать блокировку чата</button>\n' +
+        '                                    </form>\n           </div>\n' +
+        '                </div>\n' +
+        '            </div>'}
+let warn;
+if(user.admlvl <3 ){ }else {warn = '<div class="col-md-4 mb-4">\n' +
+        '                <div class="card bg-dark" style="height: 397.3px">\n' +
+        '                    <div class="card-body"><form onsubmit="return false">\n' +
+    '                                        <h4 class="control-label mb-10">Выдача предупреждения</h4>\n' +
+    '                                        <label class="control-label mb-10" id="warn_error" style="color: #dd163b"></label>\n' +
+    '                                        <div class="form-group">\n' +
+    '                                            <label class="control-label mb-10">NickName</label>\n' +
+    '                                            <div class="input-group">\n' +
+    '                                                <input type="text" class="form-control" id="nick_warn" placeholder="NickName">\n' +
+    '                                            </div>\n' +
+    '                                        </div>\n' +
+    '                                        <div class="form-group">\n' +
+    '                                            <label class="control-label mb-10">Причина</label>\n' +
+    '                                            <div class="input-group">\n' +
+    '                                                <input type="text" class="form-control" id="reason_warn" placeholder="Причина">\n' +
+    '                                            </div>\n' +
+    '                                        </div>\n' +
+    '                                        <button type="submit" id="btnWarnPlayer" class="btn btn-danger mr-10">Выдать предупреждение</button>\n' +
+    '                                    </form>\n           </div>\n' +
+        '                </div>\n' +
+        '            </div>'}
+let ban;
+if(user.admlvl < 3) {}  else { ban =
+        '                                    <form onsubmit="return false">\n' +
+        '                                        <h4 class="control-label mb-10">Выдача блокировки аккаунта</h4>\n' +
+        '                                        <label class="control-label mb-10" id="ban_error" style="color: #dd163b"></label>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">NickName</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="nick_ban" placeholder="NickName">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Кол-во дней</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="day_ban" placeholder="Кол-во дней">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="form-group">\n' +
+        '                                            <label class="control-label mb-10">Причина</label>\n' +
+        '                                            <div class="input-group">\n' +
+        '                                                <input type="text" class="form-control" id="reason_ban" placeholder="Причина блокировки">\n' +
+        '                                            </div>\n' +
+        '                                        </div>\n' +
+        '                                        <button type="submit" id="btnBanPlayer" class="btn btn-danger mr-10">Заблокировать</button>\n' +
+        '                                    </form>\n'}
+%>
+<main class="pt-5 max-lg-5">
+    <%- include('header.ejs')%>
+
+    <div class="row wow fadeIn pl-3 pr-4">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <%-ban%>
+                    </div>
+                </div>
+            </div>
+            <%-warn%>
+            <%-mute%>
+            <%-jail%>
+    </div>
+</main>
+<script>
+
+    $('#btnBanPlayer').click(function(){
+        let nick = $('#nick_ban').val();
+        let day = $('#day_ban').val();
+        let reason = $('#reason_ban').val();
+        $.ajax({
+            url: '/account/admin/block/banPlayer',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({
+                "nick": nick,
+                "day" : day,
+                "reason" : reason,
+            }),
+            cache: false,
+            success: function(data){
+                $("#ban_error").text(data)
+            }
+
+        });
+    });
+
+    $('#btnWarnPlayer').click(function(){
+        let nick = $('#nick_warn').val();
+        let reason = $('#reason_warn').val();
+        $.ajax({
+            url: '/account/admin/block/warnPlayer',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({
+                "nick": nick,
+                "reason" : reason,
+            }),
+            cache: false,
+            success: function(data){
+                $("#warn_error").text(data)
+            }
+
+        });
+    });
+    $('#btnMutePlayer').click(function(){
+        let nick = $('#nick_mute').val();
+        let time = $('#time_mute').val();
+        let reason = $('#reason_mute').val();
+        $.ajax({
+            url: '/account/admin/block/mutePlayer',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({
+                "nick": nick,
+                "time" : time,
+                "reason" : reason,
+            }),
+            cache: false,
+            success: function(data){
+                $("#mute_error").text(data)
+            }
+
+        });
+    });
+    $('#btnJailPlayer').click(function(){
+        let nick = $('#nick_jail').val();
+        let time = $('#time_jail').val();
+        let reason = $('#reason_jail').val();
+        $.ajax({
+            url: '/account/admin/block/jailPlayer',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({
+                "nick": nick,
+                "time" : time,
+                "reason" : reason,
+            }),
+            cache: false,
+            success: function(data){
+                $("#jail_error").text(data)
+            }
+
+        });
+    });
+
+
+
+
+</script>

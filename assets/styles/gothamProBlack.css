@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "GothamProBlack";
+    src: url("../../assets/fonts/GothamProBlack/GothamProBlack.eot");
+    src: url("../../assets/fonts/GothamProBlack/GothamProBlack.eot?#iefix")format("embedded-opentype"),
+    url("../../assets/fonts/GothamProBlack/GothamProBlack.woff") format("woff"),
+    url("../../assets/fonts/GothamProBlack/GothamProBlack.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothamProBold";
+    src: url("../../assets/fonts/GothamProBold/GothamProBold.eot");
+    src: url("../../assets/fonts/GothamProBold/GothamProBold.eot?#iefix")format("embedded-opentype"),
+    url("../../assets/fonts/GothamProBold/GothamProBold.woff") format("woff"),
+    url("../../assets/fonts/GothamProBold/GothamProBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothamProMedium";
+    src: url("../../assets/fonts/GothamProMedium/GothamProMedium.eot");
+    src: url("../../assets/fonts/GothamProMedium/GothamProMedium.eot?#iefix")format("embedded-opentype"),
+    url("../../assets/fonts/GothamProMedium/GothamProMedium.woff") format("woff"),
+    url("../../assets/fonts/GothamProMedium/GothamProMedium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothamProLight";
+    src: url("../../assets/fonts/GothamProLight/GothamProLight.eot");
+    src: url("../../assets/fonts/GothamProLight/GothamProLight.eot?#iefix")format("embedded-opentype"),
+    url("../../assets/fonts/GothamProLight/GothamProLight.woff") format("woff"),
+    url("../../assets/fonts/GothamProLight/GothamProLight.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "PricedownC";
+    src: url("../../assets/fonts/PricedownC/PricedownC.eot");
+    src: url("../../assets/fonts/PricedownC/PricedownC.eot?#iefix")format("embedded-opentype"),
+    url("../../assets/fonts/PricedownC/PricedownC.woff") format("woff"),
+    url("../../assets/fonts/PricedownC/PricedownC.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}

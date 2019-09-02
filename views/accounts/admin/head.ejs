@@ -1,0 +1,79 @@
+
+<main class="pt-5" id="personal">
+
+    <%- include('header.ejs')%>
+    <div class="row wow fadeIn pl-3 pr-4 pb-4">
+        <div class="container-fluid">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <form method="POST" onclick="return false">
+                        <h4>Управление сервером</h4>
+                        <button type="submit" id="stop_server" name="stop_server" class="btn btn-elegant mr-10">Остановить</button>
+                    </form>
+                    <form method="POST" onclick="return false">
+                        <button type="submit" id="start_server" name="start_server" class="btn btn-success mr-10">Запустить</button>
+                    </form>
+                    <form onclick="return false">
+                        <button type="submit" id="restart_server" name="restart_server" class="btn btn-success mr-10">Рестарт</button>
+                    </form>
+                    <p><?=$res?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+
+    $('#restart_server').click(function(){
+        console.log('click');
+        $.ajax({
+            url: '/account/admin/head/server',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({"restart": true}),
+            cache: false,
+            success: function(data){
+                console.log(data)
+            }
+
+        });
+    });
+    $('#start_server').click(function(){
+        console.log('click');
+        $.ajax({
+            url: '/account/admin/head/server',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({"start": true}),
+            cache: false,
+            success: function(data){
+                console.log(data)
+            }
+
+        });
+    });
+    $('#stop_server').click(function(){
+        console.log('click');
+        $.ajax({
+            url: '/account/admin/head/server',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({"stop": true}),
+            cache: false,
+            success: function(data){
+                console.log(data)
+            }
+
+        });
+    });
+
+</script>

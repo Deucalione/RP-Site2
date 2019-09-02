@@ -1,0 +1,107 @@
+<%
+let insert_admin;
+if(user.admlvl < 5) {insert_admin = ''} else {insert_admin = "<div class=\"row wow fadeIn pl-3 pr-4 pb-4\">\n" +
+        "    <div class=\"container-fluid\">\n" +
+        "        <div class=\"card bg-dark\">\n" +
+        "            <div class=\"card-body\">\n" +
+        "                <form onsubmit=\"return false\">\n" +
+        "                <label class=\"control-label mb-10\" id=\"admin_error\" style=\"color: #dd163b\"></label>\n" +
+        "                <div class=\"form-group\">\n" +
+        "                    <label class=\"control-label mb-10\">NickName</label>\n" +
+        "                    <div class=\"input-group\">\n" +
+        "                        <input type=\"text\" class=\"form-control\" id=\"NickName_Admin\" placeholder=\"NickName\">\n" +
+        "                    </div>\n" +
+        "                </div>\n" +
+        "    <label class=\"control-label mb-10\">Лидерство</label>\n                        <div class=\"form-group\">\n                            <select name=\"leader\" id=\"LeaderId\" class=\"container-fluid\">\n                                <option value=\"1\" selected=\"selected\">Войска Специального Назначения</option>\n                                <option value=\"2\">Военно Морской Флот</option>\n                                <option value=\"3\">Министерство Внутренних Дел</option>\n                                <option value=\"4\">Государственная Инспеция Безопасности Дорожного Движения</option>\n                                <option value=\"5\">Центральная Областная Больница</option>\n                                <option value=\"6\">Средства Массовой Информациии</option>\n                                <option value=\"7\">Областная Дума</option>\n                                <option value=\"8\">ОПГ Измайловская</option>\n                                <option value=\"9\">ОПГ Центральная</option>\n                                <option value=\"10\">ОПГ Солнцевская</option>\n                                <option value=\"0\">Снять с лидерства</option>\n                            </select>\n                        </div>\n"+
+        "                <button type=\"submit\" id=\"btnInsertAdmin\" class=\"btn btn-success mr-10\">Добавить</button>\n" +
+        "                </form>\n" +
+        "            </div>\n" +
+        "        </div>\n" +
+        "    </div>\n" +
+        "    </div>"}
+
+function getFraction(id) {
+    let member;
+    switch (id) {
+        case 1: member = "Войска специального назначения"; break;
+        case 2: member = "Военно-морской флот";  break;
+        case 3: member = "Министерство внутренних дел"; break;
+        case 4: member = "Государственная инспекция безопасности дорожного движения"; break;
+        case 5: member = "Центральная областная больница"; break;
+        case 6: member = "СМИ"; break;
+        case 7: member = "Областная Дума"; break;
+        case 8: member = "ОПГ Измайловская"; break;
+        case 9: member = "ОПГ Центральная"; break;
+        case 10: member = "ОПГ Солнцевская"; break;
+        default:  member ="Безработный"; break;
+    }
+    return member;
+}
+%>
+<main class="pt-5 max-lg-5">
+    <%- include('header.ejs')%>
+    <%-insert_admin%>
+    <div class="row wow fadeIn pl-3 pr-4">
+        <div class="container-fluid">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <table class="leaders-table">
+                        <thead>
+                        <tr style="background-color: #dd163b;">
+                            <th colspan="7">Cписок Лидеров</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Ник</th>
+                            <th>Фракция</th>
+                            <th>Телефон</th>
+                            <th>Деньги</th>
+                            <th>В Банке</th>
+                            <th>Действие</th>
+                        </tr>
+                        <%admins.forEach(function (item) { %>
+                            <form action="/account/admin/admins/stats/<%=item.name%>" method="post">
+                                <input type="hidden" value="<%=item.name%>">
+                                <tr>
+                                    <td><%=item.name%></td>
+                                    <td><%=getFraction(item.member)%></td>
+                                    <td><%=item.number%></td>
+                                    <td><%=item.money%></td>
+                                    <td><%=item.bank%></td>
+                                    <td><button  type="submit" style="background: none;border:none; color: #4d7198">Информация</button></td>
+                                </tr>
+                            </form>
+                        <% })%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+
+    $('#btnInsertAdmin').click(function(){
+        let leader = $('#NickName_Admin').val();
+        let lvl = $('#LeaderId').val();
+        $.ajax({
+            url: '/account/admin/leaders/insert_leader',
+            type: 'POST',
+            headers: {
+                "content-type": "application/json",
+                "dataType": "json"
+            },
+            data: JSON.stringify({
+                "leader": leader,
+                "lvl" : lvl,
+            }),
+            cache: false,
+            success: function(data){
+                $("#admin_error").text(data)
+            }
+
+        });
+    });
+
+</script>

@@ -1,0 +1,169 @@
+<%
+let onlineClass;
+let onlineText;
+if(user.online == 1){
+    onlineClass = 'bg-main-2';
+    onlineText = 'Играет';
+}
+else{
+    onlineClass = 'bg-main-1';
+    onlineText = 'Не в игре';
+}
+let sexClass;
+let sexText;
+if(user.sex==1){
+    sexClass = 'fa fa-male'
+	sexText = 'Женский'
+}
+else {
+	sexClass = 'fa fa-female'
+	sexText = 'Мужской'
+}
+let houseText;
+if(user.house==-1){
+    houseText = 'Бездомный'
+}
+else {
+    houseText = '№ '+ user.house +''
+}
+let carText;
+if(user.car1 == -1 && user.car2 == -1 && user.car3 ==-1){
+    carText = 'Отсутствует'
+}
+else{
+    let cars = '0';
+    if(user.car1!=-1){
+        cars++;
+        if(user.car2!=-1){
+            cars++
+			if(user.car3!=-1){
+			    cars++;
+			}
+		}
+	}
+    carText = ''+ cars +'/3'
+}
+let bizText;
+if(user.bizid == -1){
+    bizText = 'Отсутствует'
+}
+else{
+    bizText = '№ '+ user.bizid +''
+}
+let medcard;
+let medcardcolor;
+if(user.medcard == 0){
+    medcard = 'Отсутствует';
+    medcardcolor = 'red'
+}
+else {
+    medcard = 'Присутствует';
+    medcardcolor = 'green';
+}
+let net = 'Отсутствует';
+let est = 'Присутствует';
+let greenc = 'green';
+let redc = 'red';
+let licm;
+let licmcolor;
+if(user.lica == 0 ){
+    licm = net;
+    licmcolor = redc;
+}
+else {licmcolor = greenc; licm=est;}
+let licb, licbcolor;
+if(user.licb == 0) {licb = net; licbcolor =redc;}else{licb=est;licbcolor=greenc;}
+let licg, licgcolor;
+if(user.licc == 0) {licg=net;licgcolor=redc;}else {licg=est;licbcolor=greenc;}
+let licavt, licavtcolor;
+if(user.licd == 0){licavt=net;licavtcolor=redc;}else {licavt=est;licavtcolor=greenc;}
+let licvt, licvtcolor;
+if(user.lich == 0){licvt=net;licvtcolor=redc}else {licvt=est;licvtcolor=greenc}
+let licvod, licvodcolor;
+if(user.lics == 0){licvod=net;licvodcolor=redc}else {licvod=est;licvodcolor=greenc}
+let licgun, licguncolor;
+if(user.licw == 0){licgun=net;licguncolor=redc}else {licgun=est;licguncolor=greenc}
+
+function getRangs(id, rank) {
+
+		const rangs = [
+			['', '','',''],
+			["Рядовой", "Сержант", "Ст.сержант", "Старшина", "Лейтенант", "Капитан", "Майор", "Подполковник", "Полковник", "Генерал ВСН"],
+			["Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг", "Ранг"],
+			["Рядовой", "Сержант", "Ст. сержант", "Старшина", "Лейтенант", "Ст. лейтенант", "Майор", "Подполковник", "Полковник", "Генерал МВД"],
+			["Рядовой", "Сержант", "Ст. сержант", "Старшина", "Лейтенант", "Ст. лейтенант", "Майор", "Подполковник", "Полковник", "Генерал ДПС"],
+			["Интерн", "Медработник", "Ст. Медработник", "Фельдшер", "Участковый врач", "Терапевт", "Хирург", "Специалист", "Заведующий", "Главный врач",],
+			["Стажёр", "Мл. редактор", "Редактор", "Верстальщик новостей", "Радиотехник", "Репортёр", "Технический специалист", "Зам. директора", "Директор", "Ген. директор"],
+			["Охранник", "Начальник охраны", "Адвокат", "Инспектор здравохранения", "Инспектор СМИ", "Инспектор ГИБДД", "Инспектор МВД", "Министр", "Зам. губернатора", "Губернатор"],
+			["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+			["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+			["Пацан","Шестёрка","Шнырь","Барыга","Бандит","Фраер","Жиган","Бригадир","Смотритель","Вор в Законе"],
+		];
+		return rangs[id][rank]
+}
+function getSubRangs(id,subrank){
+		const sub_rangs = [
+			['','',''],
+			["Рота снабжения", "Военная полиция", "Патрульная рота"],
+			["Отсутствует", "Отсутствует", "Отсутствует"],
+			["Патрульно-постовая служба", "Федеральная служба исполнения наказаний", "Специальный отряд быстрого реагирования"],
+			["Дорожно-постовая служба", "Служба эвакуации", "Дежурная часть"],
+			["Отделение в г.Арзамас", "Отделение в г. Южный", "Дежурная часть"],
+			["Редакция", "Аудиовизуальный отдел", "Отсутствует"],
+			["Отсутствует", "Отсутствует", "Отсутствует"],
+			["Отсутствует", "Отсутствует", "Отсутствует"],
+			["Отсутствует", "Отсутствует", "Отсутствует"]
+					["Отсутствует", "Отсутствует", "Отсутствует"]
+		];
+	return sub_rangs[id][subrank]
+}
+
+%>
+
+<div class="container mt-5 mb-5 pb-5">
+	<h4 class="mt-5 text-center font-weight-bold">Личный кабинет</h4>
+	<div class="row mt-5 bg-ac pt-5 mb-5 pb-5">
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			<p class="text-center">
+				<img class="avatar avatar_ img-fluid" alt="Avatar" src="/assets/images/avatar/<%= user.avatar%>" />
+			</p>
+		</div>
+		<div class="col-md-6">
+			<h3 class="title-ucp-2"><span><%= user.name%></span></h3><br>
+			<div class="user-stats">
+				<p>
+					<i class="fa fa-bars"></i>
+					<span class="pl-1">Номер аккаунта</span>
+					<span class="float-right">#<%= user.id%></span>
+				</p>
+				<p>
+					<i class=" <%= sexClass%>"></i>
+					<span class="pl-1">Пол</span>
+					<span class="float-right"><%= sexText%></span>
+				</p>
+				<p>
+					<i class="fa fa-home"></i>
+					<span class="pl-1">Недвижимость</span>
+					<span class="float-right"><%= houseText%></span>
+				</p>
+				<p>
+					<i class="fa fa-car"></i>
+					<span class="pl-1">Автомобили</span>
+					<span class="float-right"><%= carText%></span>
+				</p>
+				<p>
+					<i class="fa fa-credit-card"></i>
+					<span class="pl-1">Бизнес</span>
+					<span class="float-right"><%= bizText%></span>
+				</p>
+				<p>
+					<i class="fa fa-money-bill"></i>
+					<span class="pl-1">Деньги</span>
+					<span class="float-right"><%= user.money + user.bank%></span>
+				</p>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</div>

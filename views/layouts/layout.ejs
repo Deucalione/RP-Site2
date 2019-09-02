@@ -1,0 +1,162 @@
+<%
+let login = '';
+if(req.session.User) {
+    let admin = '';
+    if(req.session.User.admlvl >= 1){
+        admin = '          <a class="dropdown-item" href="/account/admin">Административный раздел</a>\n'
+    }
+    login = '<li class="nav-item dropdown" style="border-right: none;">\n' +
+            '        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"\n' +
+            '          aria-expanded="false">\n' +
+            '          <i class="fa fa-user"></i>&nbsp;&nbsp; '+ req.session.User.name +' </a>\n' +
+            '        <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink-4">\n' +
+            '          <a class="dropdown-item" href="/account">Мой аккаунт</a>\n' +
+            admin +
+            '          <a class="dropdown-item" href="/account/settings">Настройки</a>\n' +
+            '          <a class="dropdown-item" href="/logout">Выйти из аккаунта</a>\n' +
+            '        </div>\n' +
+            '</li>'+
+            '<li class="nav-item avatar">\n' +
+            '  <a class="nav-link p-0" href="/account">\n' +
+            '    <img src="/assets/images/avatar/'+ req.session.User.avatar +'" class="rounded-circle z-depth-0 avatar_" alt="avatar image" height="40px" width=\'50px\'>\n' +
+            '  </a>\n' +
+            '</li>';
+}
+else {
+    login = '<li class="nav-item"><a class="nav-link" href="/login">Личный кабинет</a></li>'
+}
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= Title%> - MAKKORD Role Play - Играй в GTA: Criminal Russia по сети!</title>
+  <meta name="description" content="СОЗДАЙ СВОЮ ИСТОРИЮ НА MAKKORD ROLEPLAY. Играй в знаменитую GTA Criminal Russia на проекте MAKKORD ROLEPLAY" />
+  <link rel="image_src" href="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#dd163b">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/assets/styles/bootstrap.css" />
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="/assets/styles/mdb.css" />
+  <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/animate.css"/>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+      <button data-toggle="collapse" data-target="#nav-collapse" class="navbar-toggler" aria-expanded="true"><span class="navbar-toggler-icon"></span></button>
+      <div id="nav-collapse" class="navbar-collapse collapse show">
+          <ul class="navbar-nav ml-auto mheader">
+              <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://makkord-rp.com" target="_blank">Форум</a></li>
+              <li class="nav-item"><a class="nav-link" href="/hts">Как начать играть</a></li>
+              <li class="nav-item"><a class="nav-link" href="/about">О нас</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://vk.com/makkord_rp" target="_blank">Новости</a></li>
+              <%- login%>
+          </ul>
+          <div class="ml-4 navbar-brand">
+              <img src="/assets/images/logo.png" height="40px">
+          </div>
+      </div>
+
+  </div>
+</nav>
+
+    <%- body %>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small makkord-bg pt-5">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+
+                <!-- Content -->
+                <h5 class="text-uppercase"><span>Makkord </span><img class="pb-2" height="40px" src="/assets/images/logo.png"><span class="pl-2">RolePlay</span></h5>
+                <p>Приветствуем Вас на нашем проекте! Он основан на платформе CRMP (GTA Россия по сети).
+                    Заходи к нам прямо сейчас! Хорошее настроение, атмосфера Вам обеспечена.</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Навигация</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/hts">Как начать играть</a>
+                    </li>
+                    <li>
+                        <a href="/about">О нас</a>
+                    </li>
+                    <li>
+                        <a href="/news">Новости</a>
+                    </li>
+                    <li>
+                        <a href="https://makkord-rp.com" target="_blank">Форум</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Мы в соц. сетях</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="btn-floating btn-sm btn-vk" type="button" role="button" href="https://vk.com/makkord_rp"><i class="fab fa-vk"></i></a>
+                        <a class="btn-floating btn-sm btn-yt" type="button" role="button"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="/">Makkord-RP.RU</a>
+        <br>
+        Powered by <a href="http://wh-studio.net">Weishaypt</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+<script type="text/javascript" src="/assets/js/wow.min.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+</body>
+</html>
